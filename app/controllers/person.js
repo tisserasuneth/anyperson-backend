@@ -9,7 +9,9 @@ class Person {
             return res.status(400).json({ error: 'Missing required fields' });
         }
 
-        let character = await Character.create({ name, age, description });
+        const character = await Character.create({ name, age, description }).catch((err) => {
+            return res.status(500).json({ error: err.message });
+        });
 
         const job = QUEUE.createJob('BUILD_PERSON', character);
         await QUEUE.sendToQueue(job);

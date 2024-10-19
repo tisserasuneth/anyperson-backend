@@ -1,4 +1,12 @@
 import mongoose from 'mongoose';
+import { error } from 'winston';
+
+const STATES = {
+    INITIAL: 'INITIAL',
+    PROCESSING: 'PROCESSING',
+    COMPLETED: 'COMPLETED',
+    FAILED: 'FAILED',
+};
 
 const Character = new mongoose.Schema({
     name: {
@@ -59,7 +67,8 @@ const Character = new mongoose.Schema({
     metaData: {
         state: {
             type: String,
-            default: 'INITIAL',
+            enum: Object.values(STATES),
+            default: STATES.INITIAL,
         },
         errors: {
             type: [String],
@@ -70,18 +79,17 @@ const Character = new mongoose.Schema({
 
 Character.statics = {
 
-    STATES:{
-        INITIAL: 'INITIAL',
-        PROCESSING: 'PROCESSING',
-        COMPLETED: 'COMPLETED',
-        FAILED: 'FAILED',
-    },
+    STATES,
 
     create(data) {
         const character = new this({
             name: data.name,
             age: data.age,
             description: data.description,
+            metaData: {
+                state: STATES.INITIAL,
+                errors: [],
+            },
         });
         
         return character.save();

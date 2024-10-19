@@ -3,7 +3,7 @@ import logger from '../lib/logger/index.js';
 import JOBS from '../lib/jobs/index.js';
 import { v4 as uuidv4 } from 'uuid';
 
-const QUEUE_NAME = process.env.BASE_QUEUE_NAME || 'jobs';
+const QUEUE_NAME = process.env.BASE_QUEUE_NAME || 'JOBS';
 
 let connection;
 let channel;
@@ -11,7 +11,7 @@ let channel;
 const connectQueue = async () => {
     connection = await amqp.connect('amqp://localhost');
     channel = await connection.createChannel();
-    await channel.assertQueue(QUEUE_NAME, { durable: true });
+    return channel.assertQueue(QUEUE_NAME, { durable: true });
 }
 
 const sendToQueue = async (job) => {

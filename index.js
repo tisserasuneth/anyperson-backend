@@ -22,7 +22,7 @@ app.use((err, req, res, next) => {
     res.status(500).send('Something went wrong!');
 });
 
-await mongoose.connect(MONGO_URI)
+mongoose.connect(MONGO_URI)
 .then(() => {
     logger.info('Connected to MongoDB');
 }).catch((err) => {
@@ -30,11 +30,11 @@ await mongoose.connect(MONGO_URI)
     process.exit(1);
 });
 
-await QUEUE.connectQueue().then(async () => {
+QUEUE.connectQueue().then(async queue => {
     await QUEUE.startConsumer();
-    logger.info('Connected to queue');
+    logger.info(`Connected to Queue: ${queue.queue}`);
 }).catch((err) => {
-    logger.error(`Failed to connect to queue: ${err.message}`);
+    logger.error(`Failed to connect to Queue: ${err.message}`);
 });
 
 app.listen(PORT, () => {
