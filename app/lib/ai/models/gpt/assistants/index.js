@@ -27,7 +27,7 @@ class Assistant {
         return assistant;
     }
 
-    async deleteAssitant(assistantId) {
+    async deleteAssistant(assistantId) {
         return this.model.beta.assistants.del(assistantId);
     }
 }

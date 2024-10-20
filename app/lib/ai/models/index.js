@@ -1,15 +1,22 @@
 // Import models
 import OpenAIGPT from "./gpt/index.js";
 
+const MODEL_NAMES = {
+    "OpenAIGPT": "OpenAIGPT",
+}
+
 class ModelHandler {
-    constructor() {
-        this.models = {
-            OpenAIGPT,
-        };
+
+    static MODEL_NAMES = {
+        ...MODEL_NAMES,
     }
 
-    getModel(name) {
-        return this.models[name];
+    static MODELS = {
+        [MODEL_NAMES.OpenAIGPT]: OpenAIGPT,
+    };
+
+    static getModel(name) {
+        return ModelHandler.MODELS[name];
     }
 }
 

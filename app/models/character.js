@@ -55,7 +55,8 @@ const Character = new mongoose.Schema({
         },
         date: {
             type: String,
-        }
+        },
+        _id: false,
     }],
     goals: {
         type: [String],
@@ -66,7 +67,7 @@ const Character = new mongoose.Schema({
     summary: {
         type: String,
     },
-    threadId: {
+    assistant: {
         type: String,
     },
     metaData: {
