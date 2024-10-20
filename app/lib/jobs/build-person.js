@@ -19,7 +19,7 @@ async function buildPerson(data) {
         );
 
         const parsedResponse = JSON.parse(response);
-        const { features, imageDescription } = parsedResponse;
+        const { features, imageDescription, summary } = parsedResponse;
 
         character = await Character.findOne({ _id: data._id });
         
@@ -30,6 +30,7 @@ async function buildPerson(data) {
         character.set({
             ...features,
             imageDescription,
+            summary,
             metaData: { state: Character.STATES.COMPLETED },
         });
 

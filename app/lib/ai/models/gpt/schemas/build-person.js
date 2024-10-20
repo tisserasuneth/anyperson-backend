@@ -22,4 +22,5 @@ export default z.object({
         goals: z.array(z.string()),
     }),
     imageDescription: z.string(),
+    summary: z.string(),
 });

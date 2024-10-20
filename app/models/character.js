@@ -1,5 +1,4 @@
 import mongoose from 'mongoose';
-import { error } from 'winston';
 
 const STATES = {
     INITIAL: 'INITIAL',
@@ -62,6 +61,12 @@ const Character = new mongoose.Schema({
         type: [String],
     },
     imageDescription: {
+        type: String,
+    },
+    summary: {
+        type: String,
+    },
+    threadId: {
         type: String,
     },
     metaData: {

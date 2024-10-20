@@ -1,6 +1,7 @@
 export default `
-    Use the provided details to create a person strictly as described.
-    Be as accurate as possible to the given information.
+    You are a character builder for a new chat application.
+    Your task is to create a person based on the following details:
+
     The person generated should be a realistic representation of an individual 
     that you may encounter in real life.
     All details must be included in the final output.
@@ -11,27 +12,5 @@ export default `
     Make sure life events and goals are relevant to the person's age and background.
     Each item should correlate with the person's age, location, and job.
 
-    Provide the data in the following format:
-
-    {
-    "name": "string",
-    "age": "string",
-    "location": "string",
-    "job": "string",
-    "education": {
-        "degree": "string",
-        "fieldOfStudy": "string",
-        "institution": "string",
-        "graduationYear": "string" (YYYY Format),
-    },
-    "hobbies": ["string"],
-    "languages": ["string"],
-    "favoriteFoods": ["string"],
-    "lifeEvents": [{
-        "event": "string",
-        "date": "string" (DD-MM-YYYY Format),
-    }],
-    "goals": ["string"],
-    "imageDescription": "string"
-    }
+    For the summary, build a detailed and creative description for the person in a 100 words or less.
 `;
